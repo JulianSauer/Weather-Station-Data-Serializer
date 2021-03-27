@@ -16,8 +16,8 @@ import (
 const TABLE = "WeatherStation"
 
 type WeatherData struct {
-    MessageId     string  `json:"messageId,omitempty"`
-    Timestamp     string  `json:"timestamp"`
+    Source    string `json:"source,omitempty"`
+    Timestamp string `json:"timestamp"`
     Temperature   float64 `json:"temperature"`
     Humidity      uint8   `json:"humidity"`
     WindSpeed     float64 `json:"windSpeed"`
@@ -40,7 +40,7 @@ func handler(ctx context.Context, snsEvent events.SNSEvent) {
         e := json.Unmarshal([]byte(record.SNS.Message), &d)
         handle(e)
 
-        d.MessageId = record.SNS.MessageID
+        d.Source = "WeatherStation"
         put(&d, db)
     }
 }
