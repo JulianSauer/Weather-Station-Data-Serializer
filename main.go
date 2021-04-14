@@ -16,14 +16,15 @@ import (
 const TABLE = "WeatherStation"
 
 type WeatherData struct {
-    Source    string `json:"source,omitempty"`
-    Timestamp string `json:"timestamp"`
-    Temperature   float64 `json:"temperature"`
-    Humidity      uint8   `json:"humidity"`
-    WindSpeed     float64 `json:"windSpeed"`
-    GustSpeed     float64 `json:"gustSpeed"`
-    Rain          float64 `json:"rain"`
-    WindDirection float32 `json:"windDirection"`
+    Source        string   `json:"source"`
+    Timestamp     string   `json:"timestamp"`
+    Temperature   []string `json:"temperature,omitempty"`
+    Humidity      []string `json:"humidity,omitempty"`
+    WindSpeed     []string `json:"windSpeed,omitempty"`
+    GustSpeed     []string `json:"gustSpeed,omitempty"`
+    Rain          []string `json:"rain,omitempty"`
+    WindDirection []string `json:"windDirection,omitempty"`
+    DataFor       []string `json:"dataFor,omitempty"`
 }
 
 func handler(ctx context.Context, snsEvent events.SNSEvent) {
