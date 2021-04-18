@@ -41,7 +41,6 @@ func handler(ctx context.Context, snsEvent events.SNSEvent) {
         e := json.Unmarshal([]byte(record.SNS.Message), &d)
         handle(e)
 
-        d.Source = "WeatherStation"
         put(&d, db)
     }
 }
